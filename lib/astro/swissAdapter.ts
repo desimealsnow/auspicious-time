@@ -92,10 +92,30 @@ export async function loadSwissAdapter(): Promise<{ swe: SwissAdapter; source: '
           if (typeof fn !== 'function') return reject(new Error('swe_calc_ut not available'));
           // callback signature: (jd, body, flags, cb)
           if (fn.length >= 4) {
-            fn(jd, body, flags, (res: any) => resolve(res));
+            fn(jd, body, flags, (res: any) => {
+              try {
+                // Check if the result contains an error
+                if (res && typeof res === 'object' && res.error) {
+                  reject(new Error(res.error));
+                } else {
+                  resolve(res);
+                }
+              } catch (e) {
+                reject(e);
+              }
+            });
           } else {
             // some builds still return sync
-            resolve(fn(jd, body, flags));
+            try {
+              const res = fn(jd, body, flags);
+              if (res && typeof res === 'object' && res.error) {
+                reject(new Error(res.error));
+              } else {
+                resolve(res);
+              }
+            } catch (e) {
+              reject(e);
+            }
           }
         } catch (e) { reject(e); }
       }),
