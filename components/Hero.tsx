@@ -1,3 +1,6 @@
+/**
+ * Renders the Hero section with a cosmic theme and enhanced glassmorphism.
+ */
 export default function Hero() {
   return (
     <section className="mx-auto max-w-7xl px-4 pt-16 pb-12 text-center relative">

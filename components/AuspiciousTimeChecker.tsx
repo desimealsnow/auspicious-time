@@ -15,6 +15,13 @@ import ModernHowItWorks from "./ModernHowItWorks";
 import Footer from "./Footer";
 import type { ApiResp } from "@/lib/types";
 
+/**
+ * Renders the Auspicious Time Checker component.
+ *
+ * This component manages the loading state and API response for auspicious time calculations. It constructs a list of time windows based on the response and displays various analysis cards, including error messages, verdicts, and safe windows. The component also utilizes helper functions to determine the status of specific astrological factors.
+ *
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function AuspiciousTimeChecker() {
   const [loading, setLoading] = useState(false);
   const [resp, setResp] = useState<ApiResp | undefined>(undefined);
