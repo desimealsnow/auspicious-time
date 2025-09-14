@@ -1,3 +1,6 @@
+/**
+ * Renders the Hero section of the application.
+ */
 export default function Hero() {
   return (
     <section className="mx-auto max-w-6xl px-4 pt-10 pb-6 text-center">
