@@ -58,134 +58,163 @@ export default function ModernMuhurtaForm({
   };
 
   return (
-    <div className="mx-auto max-w-4xl px-4">
-      <div className="card p-6 md:p-8">
-        <h2 className="text-xl font-semibold text-slate-700 text-center">
-          Check your muhurta
-        </h2>
-        <p className="text-slate-500 text-center text-sm">
-          Enter your details to find the most auspicious time
-        </p>
+    <div className="mx-auto max-w-5xl px-4">
+      <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+        {/* Form Background Glow */}
+        <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-full blur-2xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-tr from-yellow-400/20 to-orange-500/20 rounded-full blur-2xl"></div>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Date of birth */}
-          <div>
-            <label className="label">Date of birth</label>
-            <input
-              className="input"
-              type="date"
-              value={dob}
-              onChange={(e) => setDob(e.target.value)}
-            />
-          </div>
-
-          {/* Place of birth */}
-          <div>
-            <label className="label">Place of birth</label>
-            <input
-              className="input"
-              placeholder="City, Country"
-              value={pob}
-              onChange={(e) => setPob(e.target.value)}
-            />
-          </div>
-
-          {/* Time of birth */}
-          <div>
-            <label className="label">Time of birth</label>
-            <input
-              className="input"
-              type="time"
-              value={tob}
-              onChange={(e) => setTob(e.target.value)}
-            />
-          </div>
-
-          {/* Activity and Event time */}
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="label">Activity</label>
-              <select
-                className="input"
-                value={activity}
-                onChange={(e) => setActivity(e.target.value)}
-              >
-                <option value="travel">Travel</option>
-                <option value="marriage">Marriage</option>
-                <option value="new_business">New business</option>
-                <option value="puja">Puja</option>
-                <option value="interview">Interview</option>
-                <option value="property">Property</option>
-                <option value="surgery">Surgery</option>
-                <option value="general">General</option>
-              </select>
+        <div className="relative z-10">
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center mb-4">
+              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-purple-400/50"></div>
+              <span className="mx-3 text-purple-300 text-xs font-medium tracking-widest uppercase">
+                🔮 Muhurta Analysis
+              </span>
+              <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-purple-400/50"></div>
             </div>
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+              Check Your Perfect Timing
+            </h2>
+            <p className="text-white/70 text-base leading-relaxed max-w-2xl mx-auto">
+              Enter your details to discover the most auspicious time for your
+              important activity
+            </p>
+          </div>
+
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Date of birth */}
             <div>
-              <label className="label">Event time</label>
+              <label className="label">Date of birth</label>
+              <input
+                className="input"
+                type="date"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+              />
+            </div>
+
+            {/* Place of birth */}
+            <div>
+              <label className="label">Place of birth</label>
+              <input
+                className="input"
+                placeholder="City, Country"
+                value={pob}
+                onChange={(e) => setPob(e.target.value)}
+              />
+            </div>
+
+            {/* Time of birth */}
+            <div>
+              <label className="label">Time of birth</label>
               <input
                 className="input"
                 type="time"
-                value={eventTime}
-                onChange={(e) => setEventTime(e.target.value)}
+                value={tob}
+                onChange={(e) => setTob(e.target.value)}
+              />
+            </div>
+
+            {/* Activity and Event time */}
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="label">Activity</label>
+                <select
+                  className="input"
+                  value={activity}
+                  onChange={(e) => setActivity(e.target.value)}
+                >
+                  <option value="travel">Travel</option>
+                  <option value="marriage">Marriage</option>
+                  <option value="new_business">New business</option>
+                  <option value="puja">Puja</option>
+                  <option value="interview">Interview</option>
+                  <option value="property">Property</option>
+                  <option value="surgery">Surgery</option>
+                  <option value="general">General</option>
+                </select>
+              </div>
+              <div>
+                <label className="label">Event time</label>
+                <input
+                  className="input"
+                  type="time"
+                  value={eventTime}
+                  onChange={(e) => setEventTime(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* Event date */}
+            <div>
+              <label className="label">Event date</label>
+              <input
+                className="input"
+                type="date"
+                value={eventDate}
+                onChange={(e) => setEventDate(e.target.value)}
+              />
+            </div>
+
+            {/* Event location */}
+            <div>
+              <label className="label">Event location</label>
+              <input
+                className="input"
+                placeholder="City, Country"
+                value={eventLoc}
+                onChange={(e) => setEventLoc(e.target.value)}
+              />
+            </div>
+
+            {/* Lat/Lon for API */}
+            <div>
+              <label className="label">Latitude</label>
+              <input
+                className="input"
+                value={lat}
+                onChange={(e) => setLat(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="label">Longitude</label>
+              <input
+                className="input"
+                value={lon}
+                onChange={(e) => setLon(e.target.value)}
               />
             </div>
           </div>
 
-          {/* Event date */}
-          <div>
-            <label className="label">Event date</label>
-            <input
-              className="input"
-              type="date"
-              value={eventDate}
-              onChange={(e) => setEventDate(e.target.value)}
-            />
+          <div className="mt-10 flex gap-4 justify-center">
+            <button
+              disabled={loading}
+              onClick={submit}
+              className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 transition-all duration-200 min-w-[160px]"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-200"></div>
+              <div className="relative flex items-center justify-center gap-2">
+                {loading ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <span>Analyzing...</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-lg">✨</span>
+                    <span>Check Time</span>
+                  </>
+                )}
+              </div>
+            </button>
+            <button
+              onClick={clear}
+              className="px-6 py-4 border border-white/30 text-white/80 hover:text-white hover:bg-white/10 font-medium rounded-2xl transition-all duration-200 hover:border-white/50"
+            >
+              Clear Form
+            </button>
           </div>
-
-          {/* Event location */}
-          <div>
-            <label className="label">Event location</label>
-            <input
-              className="input"
-              placeholder="City, Country"
-              value={eventLoc}
-              onChange={(e) => setEventLoc(e.target.value)}
-            />
-          </div>
-
-          {/* Lat/Lon for API */}
-          <div>
-            <label className="label">Latitude</label>
-            <input
-              className="input"
-              value={lat}
-              onChange={(e) => setLat(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="label">Longitude</label>
-            <input
-              className="input"
-              value={lon}
-              onChange={(e) => setLon(e.target.value)}
-            />
-          </div>
-        </div>
-
-        <div className="mt-6 flex gap-3 justify-center">
-          <button
-            disabled={loading}
-            onClick={submit}
-            className="px-5 py-2 rounded-lg bg-gradient-to-r from-brand to-teal text-white disabled:opacity-60 font-medium"
-          >
-            {loading ? "Checking…" : "✨ Check time"}
-          </button>
-          <button
-            onClick={clear}
-            className="px-5 py-2 rounded-lg border text-slate-600 hover:bg-slate-50"
-          >
-            Clear
-          </button>
         </div>
       </div>
     </div>

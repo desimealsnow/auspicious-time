@@ -1,25 +1,49 @@
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t bg-slate-50/80">
-      <div className="mx-auto max-w-6xl px-4 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="h-6 w-6 rounded-full bg-brand/90" />
-            <div className="font-semibold">Auspicious Time</div>
-            <span className="ml-2 text-xs text-slate-500">Cosmic Guidance</span>
+    <footer className="mt-20 border-t border-white/20 bg-black/20 backdrop-blur-xl">
+      <div className="mx-auto max-w-7xl px-4 py-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <div className="h-6 w-6 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500" />
+              <div className="absolute inset-0 h-6 w-6 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 animate-pulse opacity-30" />
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="font-bold text-white">Auspicious Time</div>
+              <span className="text-xs text-yellow-300 bg-yellow-400/20 px-2 py-0.5 rounded-full border border-yellow-400/30">
+                ✨ Cosmic Guidance
+              </span>
+            </div>
           </div>
 
-          <p className="text-sm text-slate-500 text-center">
-            © {new Date().getFullYear()} Auspicious Time • Not medical/financial
-            advice
+          <p className="text-sm text-white/60 text-center leading-relaxed">
+            © {new Date().getFullYear()} Auspicious Time • Guidance for cosmic
+            alignment
+            <br />
+            <span className="text-xs text-white/40">
+              Not medical or financial advice • For spiritual guidance only
+            </span>
           </p>
 
           <button
-            className="px-4 py-2 rounded-lg border text-rose-600 border-rose-200 hover:bg-rose-50 text-sm font-medium"
+            className="group px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-500/20 to-rose-500/20 border border-pink-400/30 text-pink-300 hover:text-pink-200 font-medium hover:bg-gradient-to-r hover:from-pink-500/30 hover:to-rose-500/30 transition-all duration-200 transform hover:scale-105"
             onClick={() => window.open("#donate", "_self")}
           >
-            ❤️ Donate
+            <span className="flex items-center gap-2">
+              ❤️ Support Our Mission
+            </span>
           </button>
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-white/10 text-center">
+          <p className="text-xs text-white/40 leading-relaxed">
+            Built with ancient wisdom and modern technology • Powered by Swiss
+            Ephemeris
+            <br />
+            <span className="text-white/30">
+              Made with ✨ for seekers of perfect timing
+            </span>
+          </p>
         </div>
       </div>
     </footer>

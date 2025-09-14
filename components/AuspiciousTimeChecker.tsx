@@ -41,95 +41,115 @@ export default function AuspiciousTimeChecker() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-ink">
-      <Header />
-      <Hero />
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 text-white relative overflow-hidden">
+      {/* Cosmic Background Elements */}
+      <div className="absolute inset-0 opacity-50">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3Ccircle cx='27' cy='7' r='1'/%3E%3Ccircle cx='47' cy='7' r='1'/%3E%3Ccircle cx='7' cy='27' r='1'/%3E%3Ccircle cx='27' cy='27' r='1'/%3E%3Ccircle cx='47' cy='27' r='1'/%3E%3Ccircle cx='7' cy='47' r='1'/%3E%3Ccircle cx='27' cy='47' r='1'/%3E%3Ccircle cx='47' cy='47' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        ></div>
+      </div>
 
-      <main className="mx-auto max-w-6xl px-4 space-y-8">
-        <ModernMuhurtaForm
-          onResult={setResp}
-          loading={loading}
-          setLoading={setLoading}
-        />
+      {/* Floating Orbs */}
+      <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+      <div className="absolute top-40 right-20 w-40 h-40 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
+      <div className="absolute bottom-32 left-1/3 w-36 h-36 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-2000"></div>
 
-        {resp && (
-          <section className="space-y-8">
-            {resp.error && (
-              <div className="card p-4 text-rose-600 border-rose-200 bg-rose-50/50">
-                <div className="flex items-center gap-2">
-                  <span className="text-rose-500">⚠️</span>
-                  <span className="font-medium">Error</span>
+      {/* Content */}
+      <div className="relative z-10">
+        <Header />
+        <Hero />
+
+        <main className="mx-auto max-w-6xl px-4 space-y-8">
+          <ModernMuhurtaForm
+            onResult={setResp}
+            loading={loading}
+            setLoading={setLoading}
+          />
+
+          {resp && (
+            <section className="space-y-8">
+              {resp.error && (
+                <div className="card p-4 text-rose-600 border-rose-200 bg-rose-50/50">
+                  <div className="flex items-center gap-2">
+                    <span className="text-rose-500">⚠️</span>
+                    <span className="font-medium">Error</span>
+                  </div>
+                  <p className="mt-1">{resp.error}</p>
                 </div>
-                <p className="mt-1">{resp.error}</p>
-              </div>
-            )}
+              )}
 
-            {resp.verdict && <VerdictStrip r={resp} />}
+              {resp.verdict && <VerdictStrip r={resp} />}
 
-            {/* Your Muhurta Analysis */}
-            {resp.verdict && (
-              <div>
-                <h2 className="text-2xl font-semibold text-center mb-2">
-                  Your Muhurta Analysis
-                </h2>
-                <p className="text-slate-600 text-center text-sm mb-8">
-                  Based on your birth details and chosen activity
-                </p>
+              {/* Your Muhurta Analysis */}
+              {resp.verdict && (
+                <div>
+                  <h2 className="text-2xl font-semibold text-center mb-2">
+                    Your Muhurta Analysis
+                  </h2>
+                  <p className="text-slate-600 text-center text-sm mb-8">
+                    Based on your birth details and chosen activity
+                  </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <ScoreCard score={resp.verdict?.score ?? 0} />
-                  <InfoCard
-                    title="Tarabala"
-                    value={
-                      resp.tarabala
-                        ? resp.tarabala.isGood
-                          ? "Favorable"
-                          : "Unfavorable"
-                        : "Neutral"
-                    }
-                    sub={resp.tarabala?.name}
-                    status={getStatusFromValue(
-                      resp.tarabala?.name ?? "",
-                      resp.tarabala?.isGood
-                    )}
-                  />
-                  <InfoCard
-                    title="Chandrabala"
-                    value={
-                      resp.chandrabala ? `${resp.chandrabala.relation}/12` : "—"
-                    }
-                    sub={
-                      resp.chandrabala?.isGood
-                        ? "Good moon relationship harmony level"
-                        : "Neutral"
-                    }
-                    status={getStatusFromValue(
-                      resp.chandrabala?.relation.toString() ?? "",
-                      resp.chandrabala?.isGood
-                    )}
-                  />
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <ScoreCard score={resp.verdict?.score ?? 0} />
+                    <InfoCard
+                      title="Tarabala"
+                      value={
+                        resp.tarabala
+                          ? resp.tarabala.isGood
+                            ? "Favorable"
+                            : "Unfavorable"
+                          : "Neutral"
+                      }
+                      sub={resp.tarabala?.name}
+                      status={getStatusFromValue(
+                        resp.tarabala?.name ?? "",
+                        resp.tarabala?.isGood
+                      )}
+                    />
+                    <InfoCard
+                      title="Chandrabala"
+                      value={
+                        resp.chandrabala
+                          ? `${resp.chandrabala.relation}/12`
+                          : "—"
+                      }
+                      sub={
+                        resp.chandrabala?.isGood
+                          ? "Good moon relationship harmony level"
+                          : "Neutral"
+                      }
+                      status={getStatusFromValue(
+                        resp.chandrabala?.relation.toString() ?? "",
+                        resp.chandrabala?.isGood
+                      )}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            <PanchangCard r={resp} />
+              <PanchangCard r={resp} />
 
-            {resp.sunrise && resp.sunset && (
-              <TimelineBar
-                sunrise={resp.sunrise}
-                sunset={resp.sunset}
-                windows={windows}
-              />
-            )}
+              {resp.sunrise && resp.sunset && (
+                <TimelineBar
+                  sunrise={resp.sunrise}
+                  sunset={resp.sunset}
+                  windows={windows}
+                />
+              )}
 
-            <SafeWindows list={resp.safe_windows} />
-            <Reasons list={resp.verdict?.reasons} />
-          </section>
-        )}
-      </main>
+              <SafeWindows list={resp.safe_windows} />
+              <Reasons list={resp.verdict?.reasons} />
+            </section>
+          )}
+        </main>
 
-      <ModernHowItWorks />
-      <Footer />
+        <ModernHowItWorks />
+        <Footer />
+      </div>
     </div>
   );
 }
