@@ -1,3 +1,6 @@
+/**
+ * Renders the footer component with branding and support information.
+ */
 export default function Footer() {
   return (
     <footer className="mt-20 border-t border-white/20 bg-black/20 backdrop-blur-xl">
