@@ -15,6 +15,13 @@ import ModernHowItWorks from "./ModernHowItWorks";
 import Footer from "./Footer";
 import type { ApiResp } from "@/lib/types";
 
+/**
+ * Renders the Auspicious Time Checker component.
+ *
+ * This component manages the loading state and API response for auspicious time calculations. It displays various time windows based on the response, handles error messages, and presents a detailed analysis of the Muhurta based on user input. The component also utilizes helper functions to determine the status of specific astrological factors.
+ *
+ * @returns JSX.Element representing the Auspicious Time Checker UI.
+ */
 export default function AuspiciousTimeChecker() {
   const [loading, setLoading] = useState(false);
   const [resp, setResp] = useState<ApiResp | undefined>(undefined);
@@ -32,6 +39,9 @@ export default function AuspiciousTimeChecker() {
       ]
     : [];
 
+  /**
+   * Returns the status based on the provided value and isGood flag.
+   */
   const getStatusFromValue = (
     value: string,
     isGood?: boolean
