@@ -1,3 +1,6 @@
+/**
+ * Renders a section explaining the process of obtaining cosmic guidance through Vedic analysis.
+ */
 export default function ModernHowItWorks() {
   const steps = [
     {
