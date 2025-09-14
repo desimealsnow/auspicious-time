@@ -154,100 +154,100 @@ export default function AuspiciousTimeChecker() {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100">
-      <header className="mx-auto max-w-4xl px-6 pt-10 pb-4">
-        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">Personal Time Advisor</h1>
-        <p className="text-slate-300 mt-2 max-w-2xl">
+      <header className="w-full px-6 lg:px-12 pt-12 pb-8 text-center">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-4">Personal Time Advisor</h1>
+        <p className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
           Lightweight numerology + wellbeing, with optional Vedic astrology windows (Rahu/Yama/Gulika/Abhijit).
         </p>
       </header>
 
-      <main className="mx-auto max-w-4xl px-6 pb-24">
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <main className="w-full px-6 lg:px-12 pb-24 max-w-7xl mx-auto">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {/* Left: User details */}
-          <div className="bg-slate-900/60 rounded-2xl p-5 shadow-lg ring-1 ring-white/10">
-            <h2 className="text-lg font-medium mb-4">Your Details</h2>
-            <div className="space-y-4">
+          <div className="bg-slate-900/60 rounded-3xl p-8 shadow-xl ring-1 ring-white/10 backdrop-blur-sm">
+            <h2 className="text-2xl font-semibold mb-6 text-slate-100">Your Details</h2>
+            <div className="space-y-6">
               <div>
-                <label className="block text-sm mb-1">Your name (optional)</label>
+                <label className="block text-sm font-medium mb-2 text-slate-200">Your name (optional)</label>
                 <input
                   value={name}
                   onChange={e => setName(e.target.value)}
                   placeholder="Ananya / Rahul…"
-                  className="w-full rounded-xl bg-slate-800/80 px-3 py-2 outline-none ring-1 ring-white/10 focus:ring-emerald-500"
+                  className="w-full rounded-xl bg-slate-800/80 px-4 py-3 text-base outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-500 transition-all"
                 />
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm mb-1">Date of birth</label>
+                  <label className="block text-sm font-medium mb-2 text-slate-200">Date of birth</label>
                   <input
                     type="date"
                     value={dobDate}
                     onChange={e => setDobDate(e.target.value)}
-                    className="w-full rounded-xl bg-slate-800/80 px-3 py-2 outline-none ring-1 ring-white/10 focus:ring-emerald-500"
+                    className="w-full rounded-xl bg-slate-800/80 px-4 py-3 text-base outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-500 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm mb-1">Time of birth</label>
+                  <label className="block text-sm font-medium mb-2 text-slate-200">Time of birth</label>
                   <input
                     type="time"
                     value={dobTime}
                     onChange={e => setDobTime(e.target.value)}
-                    className="w-full rounded-xl bg-slate-800/80 px-3 py-2 outline-none ring-1 ring-white/10 focus:ring-emerald-500"
+                    className="w-full rounded-xl bg-slate-800/80 px-4 py-3 text-base outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-500 transition-all"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm mb-1">Your time zone</label>
+                <label className="block text-sm font-medium mb-2 text-slate-200">Your time zone</label>
                 <input
                   value={tz}
                   onChange={e => setTz(e.target.value)}
-                  className="w-full rounded-xl bg-slate-800/80 px-3 py-2 outline-none ring-1 ring-white/10 focus:ring-emerald-500"
+                  className="w-full rounded-xl bg-slate-800/80 px-4 py-3 text-base outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-500 transition-all"
                 />
-                <p className="text-xs text-slate-400 mt-1">Detected automatically; adjust if needed.</p>
+                <p className="text-sm text-slate-400 mt-2">Detected automatically; adjust if needed.</p>
               </div>
 
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm mb-1">Latitude</label>
+                  <label className="block text-sm font-medium mb-2 text-slate-200">Latitude</label>
                   <input
                     value={lat}
                     onChange={e => setLat(e.target.value)}
                     placeholder="12.97"
-                    className="w-full rounded-xl bg-slate-800/80 px-3 py-2 outline-none ring-1 ring-white/10 focus:ring-emerald-500"
+                    className="w-full rounded-xl bg-slate-800/80 px-4 py-3 text-base outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-500 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm mb-1">Longitude</label>
+                  <label className="block text-sm font-medium mb-2 text-slate-200">Longitude</label>
                   <input
                     value={lon}
                     onChange={e => setLon(e.target.value)}
                     placeholder="77.59"
-                    className="w-full rounded-xl bg-slate-800/80 px-3 py-2 outline-none ring-1 ring-white/10 focus:ring-emerald-500"
+                    className="w-full rounded-xl bg-slate-800/80 px-4 py-3 text-base outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-500 transition-all"
                   />
                 </div>
                 <div className="flex items-end">
                   <button
                     onClick={useMyLocation}
-                    className="w-full rounded-xl bg-slate-700 hover:bg-slate-600 px-3 py-2 font-medium"
+                    className="w-full rounded-xl bg-slate-700 hover:bg-slate-600 px-4 py-3 font-medium transition-all text-base"
                   >
                     Use my location
                   </button>
                 </div>
               </div>
-              {astroNote && <p className="text-xs text-amber-300">{astroNote}</p>}
+              {astroNote && <p className="text-sm text-amber-300 bg-amber-900/20 rounded-lg px-3 py-2">{astroNote}</p>}
             </div>
           </div>
 
           {/* Right: Plan */}
-          <div className="bg-slate-900/60 rounded-2xl p-5 shadow-lg ring-1 ring-white/10">
-            <h2 className="text-lg font-medium mb-4">Your Plan</h2>
-            <div className="space-y-4">
+          <div className="bg-slate-900/60 rounded-3xl p-8 shadow-xl ring-1 ring-white/10 backdrop-blur-sm">
+            <h2 className="text-2xl font-semibold mb-6 text-slate-100">Your Plan</h2>
+            <div className="space-y-6">
               <div>
-                <label className="block text-sm mb-1">Activity</label>
+                <label className="block text-sm font-medium mb-2 text-slate-200">Activity</label>
                 <select
                   value={activityType}
                   onChange={e => setActivityType(e.target.value)}
-                  className="w-full rounded-xl bg-slate-800/80 px-3 py-2 outline-none ring-1 ring-white/10 focus:ring-emerald-500"
+                  className="w-full rounded-xl bg-slate-800/80 px-4 py-3 text-base outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-500 transition-all"
                 >
                   <option value="start">Start a new project</option>
                   <option value="sign">Sign a contract</option>
@@ -262,55 +262,55 @@ export default function AuspiciousTimeChecker() {
               </div>
               {activityType === 'custom' && (
                 <div>
-                  <label className="block text-sm mb-1">Describe the activity</label>
+                  <label className="block text-sm font-medium mb-2 text-slate-200">Describe the activity</label>
                   <input
                     value={customActivity}
                     onChange={e => setCustomActivity(e.target.value)}
                     placeholder="e.g., launch my app beta, sign MoU, house-warming…"
-                    className="w-full rounded-xl bg-slate-800/80 px-3 py-2 outline-none ring-1 ring-white/10 focus:ring-emerald-500"
+                    className="w-full rounded-xl bg-slate-800/80 px-4 py-3 text-base outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-500 transition-all"
                   />
                 </div>
               )}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-4">
                 <div>
-                  <label className="block text-sm mb-1">Planned date & time</label>
+                  <label className="block text-sm font-medium mb-2 text-slate-200">Planned date & time</label>
                   <input
                     type="datetime-local"
                     value={targetDT}
                     onChange={e => setTargetDT(e.target.value)}
                     min={todayISO}
-                    className="w-full rounded-xl bg-slate-800/80 px-3 py-2 outline-none ring-1 ring-white/10 focus:ring-emerald-500"
+                    className="w-full rounded-xl bg-slate-800/80 px-4 py-3 text-base outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-emerald-500 transition-all"
                   />
                 </div>
-                <div className="flex items-end gap-2">
+                <div className="flex items-center gap-3">
                   <input
                     id="useAstro"
                     type="checkbox"
                     checked={useAstro}
                     onChange={e => setUseAstro(e.target.checked)}
-                    className="h-4 w-4"
+                    className="h-5 w-5 rounded border-slate-600 bg-slate-800 text-emerald-600 focus:ring-emerald-500 focus:ring-offset-slate-900"
                   />
-                  <label htmlFor="useAstro" className="text-sm">Use Astrology API (Vedic)</label>
+                  <label htmlFor="useAstro" className="text-base text-slate-200">Use Astrology API (Vedic)</label>
                 </div>
               </div>
               <button
                 onClick={evaluate}
-                className="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 transition px-4 py-2 font-medium"
+                className="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 transition-all px-6 py-4 font-semibold text-lg text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Check my time
               </button>
-              {error && <p className="text-sm text-rose-400">{error}</p>}
+              {error && <p className="text-base text-rose-400 bg-rose-900/20 rounded-lg px-4 py-3">{error}</p>}
             </div>
           </div>
         </section>
 
         {/* Results */}
         {result && (
-          <section className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 bg-slate-900/60 rounded-2xl p-5 shadow-lg ring-1 ring-white/10">
-              <div className="flex items-center gap-3 mb-2">
+          <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 bg-slate-900/60 rounded-3xl p-8 shadow-xl ring-1 ring-white/10 backdrop-blur-sm">
+              <div className="flex items-center gap-4 mb-6">
                 <span
-                  className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
+                  className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${
                     result.verdict === 'GOOD'
                       ? 'bg-emerald-600'
                       : result.verdict === 'OKAY'
@@ -320,7 +320,7 @@ export default function AuspiciousTimeChecker() {
                 >
                   {result.verdict}
                 </span>
-                <h3 className="text-xl font-semibold">
+                <h3 className="text-2xl font-semibold">
                   {result.verdict === 'GOOD'
                     ? 'Looks Good 👌'
                     : result.verdict === 'OKAY'
@@ -328,31 +328,34 @@ export default function AuspiciousTimeChecker() {
                     : 'Better to Avoid ⛔'}
                 </h3>
               </div>
-              <p className="text-sm text-slate-300 mb-2">
-                Score <span className="font-semibold">{result.score}</span>
-                {result.astro?.tithi && <> • Tithi: <span className="font-semibold">{result.astro.tithi}</span></>}
-                {result.astro?.nakshatra && <> • Nakshatra: <span className="font-semibold">{result.astro.nakshatra}</span></>}
+              <p className="text-base text-slate-300 mb-4 bg-slate-800/30 rounded-lg px-4 py-3">
+                Score <span className="font-semibold text-white">{result.score}</span>
+                {result.astro?.tithi && <> • Tithi: <span className="font-semibold text-white">{result.astro.tithi}</span></>}
+                {result.astro?.nakshatra && <> • Nakshatra: <span className="font-semibold text-white">{result.astro.nakshatra}</span></>}
               </p>
-              <ul className="space-y-2 list-disc list-inside text-slate-200">
+              <ul className="space-y-3 mb-6">
                 {result.reasons.map((r, i) => (
-                  <li key={i}>{r}</li>
+                  <li key={i} className="flex items-start gap-3 text-slate-200 text-base">
+                    <span className="text-emerald-500 mt-1">•</span>
+                    <span>{r}</span>
+                  </li>
                 ))}
               </ul>
-              <p className="text-xs text-slate-400 mt-4">
+              <p className="text-sm text-slate-400 bg-slate-800/20 rounded-lg px-4 py-3">
                 Guidance only; for critical life events, consult a professional and confirm local muhurta.
               </p>
             </div>
 
-            <div className="bg-slate-900/60 rounded-2xl p-5 shadow-lg ring-1 ring-white/10">
-              <h4 className="text-lg font-medium mb-3">Better Windows (next 7 days)</h4>
+            <div className="bg-slate-900/60 rounded-3xl p-8 shadow-xl ring-1 ring-white/10 backdrop-blur-sm">
+              <h4 className="text-2xl font-semibold mb-6 text-slate-100">Better Windows (next 7 days)</h4>
               {suggestions.length === 0 ? (
-                <p className="text-slate-300 text-sm">No clearly better alternatives within a week.</p>
+                <p className="text-slate-300 text-base">No clearly better alternatives within a week.</p>
               ) : (
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {suggestions.map((s, idx) => (
-                    <li key={idx} className="rounded-xl bg-slate-800/70 p-3">
-                      <div className="text-sm font-medium">{s.label}</div>
-                      <div className="text-xs text-slate-300">
+                    <li key={idx} className="rounded-xl bg-slate-800/70 p-4 border border-slate-700/50 hover:bg-slate-800/90 transition-colors">
+                      <div className="text-base font-medium text-slate-100">{s.label}</div>
+                      <div className="text-sm text-slate-300 mt-1">
                         {fmtDate(s.when)} — Personal Day {String(s.personalDay)}
                       </div>
                     </li>
@@ -364,10 +367,10 @@ export default function AuspiciousTimeChecker() {
         )}
 
         {/* Donate */}
-        <section className="mt-10 flex flex-col items-center gap-3">
+        <section className="mt-16 flex flex-col items-center gap-6 bg-slate-900/30 rounded-3xl p-8 backdrop-blur-sm">
           <RazorpayDonate />
-          <p className="text-xs text-slate-400 text-center max-w-lg">
-            Set <code>NEXT_PUBLIC_RAZORPAY_KEY_ID</code> in your environment. For production, create an order server-side and pass <code>order_id</code>.
+          <p className="text-sm text-slate-400 text-center max-w-2xl leading-relaxed">
+            Set <code className="bg-slate-800 px-2 py-1 rounded text-emerald-400">NEXT_PUBLIC_RAZORPAY_KEY_ID</code> in your environment. For production, create an order server-side and pass <code className="bg-slate-800 px-2 py-1 rounded text-emerald-400">order_id</code>.
           </p>
         </section>
       </main>
