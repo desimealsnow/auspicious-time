@@ -1,3 +1,6 @@
+/**
+ * Renders the footer component with branding and a donation button.
+ */
 export default function Footer() {
   return (
     <footer className="mt-16 border-t bg-slate-50/80">
