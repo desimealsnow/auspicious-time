@@ -1,5 +1,8 @@
 import { cls } from "@/lib/fmt";
 
+/**
+ * Renders the header component with navigation links and branding.
+ */
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b bg-white/70 backdrop-blur">
