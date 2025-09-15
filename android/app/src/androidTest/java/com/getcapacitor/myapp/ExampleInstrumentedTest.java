@@ -17,6 +17,9 @@ import org.junit.runner.RunWith;
 public class ExampleInstrumentedTest {
 
     @Test
+    /**
+     * Validates the package name of the app context.
+     */
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
