@@ -12,6 +12,9 @@ import org.junit.Test;
 public class ExampleUnitTest {
 
     @Test
+    /**
+     * Tests if the addition of 2 and 2 equals 4.
+     */
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
