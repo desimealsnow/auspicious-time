@@ -1,9 +1,20 @@
-import type { NextConfig } from "next";
 import withPWA from "next-pwa";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   reactStrictMode: true,
   serverExternalPackages: ["sweph", "swisseph"],
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Prevent client bundles from trying to resolve native modules
+      config.resolve = config.resolve || ({} as any);
+      config.resolve.alias = {
+        ...(config.resolve.alias || {}),
+        swisseph: false,
+        sweph: false,
+      } as any;
+    }
+    return config;
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -56,4 +67,4 @@ const pwaConfig = withPWA({
   ],
 });
 
-export default pwaConfig(nextConfig);
+export default pwaConfig(nextConfig as any);

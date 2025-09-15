@@ -1,7 +1,6 @@
-import type { NextConfig } from "next";
 import withPWA from "next-pwa";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   reactStrictMode: true,
   serverExternalPackages: ["sweph", "swisseph"],
 };
@@ -141,4 +140,4 @@ const pwaConfig = withPWA({
   ],
 });
 
-export default pwaConfig(nextConfig);
+export default pwaConfig(nextConfig as unknown as import("next").NextConfig);
