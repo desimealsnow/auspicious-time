@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Auspicious Time</string>
+    <string name="title_activity_main">Auspicious Time</string>
+    <string name="package_name">com.auspicioustime.app</string>
+    <string name="custom_url_scheme">com.auspicioustime.app</string>
+</resources>

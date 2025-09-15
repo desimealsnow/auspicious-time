@@ -1,0 +1,391 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3    Copyright 2019 Google Inc. All Rights Reserved.
+4
+5     Licensed under the Apache License, Version 2.0 (the "License");
+6     you may not use this file except in compliance with the License.
+7     You may obtain a copy of the License at
+8
+9         http://www.apache.org/licenses/LICENSE-2.0
+10
+11     Unless required by applicable law or agreed to in writing, software
+12     distributed under the License is distributed on an "AS IS" BASIS,
+13     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+14     See the License for the specific language governing permissions and
+15     limitations under the License.
+16-->
+17<!--
+18 The "package" attribute is rewritten by the Gradle build with the value of applicationId.
+19     It is still required here, as it is used to derive paths, for instance when referring
+20     to an Activity by ".MyActivity" instead of the full name. If more Activities are added to the
+21     application, the package attribute will need to reflect the correct path in order to use
+22     the abbreviated format.
+23-->
+24<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+25    package="com.auspicioustime.momentra"
+26    android:versionCode="1"
+27    android:versionName="1" >
+28
+29    <uses-sdk
+30        android:minSdkVersion="21"
+31        android:targetSdkVersion="35" />
+32
+33    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+33-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:25:9-80
+33-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:25:26-78
+34    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+34-->[com.google.androidbrowserhelper:locationdelegation:1.1.2] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\6215e13210b05cc5715af15b5940fb9f\transformed\locationdelegation-1.1.2\AndroidManifest.xml:7:5-79
+34-->[com.google.androidbrowserhelper:locationdelegation:1.1.2] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\6215e13210b05cc5715af15b5940fb9f\transformed\locationdelegation-1.1.2\AndroidManifest.xml:7:22-76
+35    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+35-->[com.google.androidbrowserhelper:locationdelegation:1.1.2] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\6215e13210b05cc5715af15b5940fb9f\transformed\locationdelegation-1.1.2\AndroidManifest.xml:8:5-81
+35-->[com.google.androidbrowserhelper:locationdelegation:1.1.2] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\6215e13210b05cc5715af15b5940fb9f\transformed\locationdelegation-1.1.2\AndroidManifest.xml:8:22-78
+36
+37    <queries>
+37-->[com.google.androidbrowserhelper:androidbrowserhelper:2.6.2] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\5053e02be90783e54992393be394bb70\transformed\androidbrowserhelper-2.6.2\AndroidManifest.xml:22:5-30:15
+38        <intent>
+38-->[com.google.androidbrowserhelper:androidbrowserhelper:2.6.2] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\5053e02be90783e54992393be394bb70\transformed\androidbrowserhelper-2.6.2\AndroidManifest.xml:23:9-29:18
+39            <action android:name="android.intent.action.VIEW" />
+39-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:138:17-68
+39-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:138:25-66
+40
+41            <category android:name="android.intent.category.BROWSABLE" />
+41-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:140:17-77
+41-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:140:27-75
+42
+43            <data android:scheme="https" />
+43-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:141:17-144:19
+43-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:141:23-45
+44        </intent>
+45    </queries>
+46
+47    <permission
+47-->[androidx.core:core:1.13.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\a5429f7b20c607b890f08b5283ad4ec0\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+48        android:name="com.auspicioustime.momentra.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+48-->[androidx.core:core:1.13.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\a5429f7b20c607b890f08b5283ad4ec0\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+49        android:protectionLevel="signature" />
+49-->[androidx.core:core:1.13.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\a5429f7b20c607b890f08b5283ad4ec0\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+50
+51    <uses-permission android:name="com.auspicioustime.momentra.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+51-->[androidx.core:core:1.13.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\a5429f7b20c607b890f08b5283ad4ec0\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
+51-->[androidx.core:core:1.13.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\a5429f7b20c607b890f08b5283ad4ec0\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+52
+53    <application
+53-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:34:5-192:19
+54        android:name="com.auspicioustime.momentra.Application"
+54-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:35:9-35
+55        android:allowBackup="true"
+55-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:36:9-35
+56        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+56-->[androidx.core:core:1.13.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\a5429f7b20c607b890f08b5283ad4ec0\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+57        android:extractNativeLibs="true"
+58        android:icon="@mipmap/ic_launcher"
+58-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:37:9-43
+59        android:label="@string/appName"
+59-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:38:9-40
+60        android:manageSpaceActivity="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity"
+60-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:40:9-105
+61        android:supportsRtl="true"
+61-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:42:9-35
+62        android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+62-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:43:9-68
+63        <meta-data
+63-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:45:9-47:58
+64            android:name="asset_statements"
+64-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:46:13-44
+65            android:resource="@string/assetStatements" />
+65-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:47:13-55
+66        <meta-data
+66-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:50:13-52:58
+67            android:name="web_manifest_url"
+67-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:51:17-48
+68            android:value="@string/webManifestUrl" />
+68-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:52:17-55
+69        <meta-data
+69-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:55:9-57:52
+70            android:name="twa_generator"
+70-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:56:13-41
+71            android:value="@string/generatorApp" />
+71-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:57:13-49
+72
+73        <activity android:name="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity" >
+73-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:64:13-68:24
+73-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:64:23-104
+74            <meta-data
+74-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:65:13-67:53
+75                android:name="android.support.customtabs.trusted.MANAGE_SPACE_URL"
+75-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:66:17-83
+76                android:value="@string/launchUrl" />
+76-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:67:17-50
+77        </activity>
+78        <activity
+78-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:71:9-150:20
+79            android:name="com.auspicioustime.momentra.LauncherActivity"
+79-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:71:19-50
+80            android:alwaysRetainTaskState="true"
+80-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:72:13-49
+81            android:exported="true"
+81-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:74:13-36
+82            android:label="@string/launcherName" >
+82-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:73:13-49
+83            <meta-data
+83-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:75:13-76:53
+84                android:name="android.support.customtabs.trusted.DEFAULT_URL"
+84-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:75:24-85
+85                android:value="@string/launchUrl" />
+85-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:76:17-50
+86            <meta-data
+86-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:78:13-80:58
+87                android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR"
+87-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:79:17-83
+88                android:resource="@color/colorPrimary" />
+88-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:80:17-55
+89            <meta-data
+89-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:84:13-86:62
+90                android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR_DARK"
+90-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:85:17-88
+91                android:resource="@color/colorPrimaryDark" />
+91-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:86:17-59
+92            <meta-data
+92-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:88:13-90:61
+93                android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR"
+93-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:89:17-87
+94                android:resource="@color/navigationColor" />
+94-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:90:17-58
+95            <meta-data
+95-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:92:13-94:65
+96                android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR_DARK"
+96-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:93:17-92
+97                android:resource="@color/navigationColorDark" />
+97-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:94:17-62
+98            <meta-data
+98-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:96:13-98:68
+99                android:name="androix.browser.trusted.NAVIGATION_BAR_DIVIDER_COLOR"
+99-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:97:17-84
+100                android:resource="@color/navigationDividerColor" />
+100-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:98:17-65
+101            <meta-data
+101-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:100:13-102:72
+102                android:name="androix.browser.trusted.NAVIGATION_BAR_DIVIDER_COLOR_DARK"
+102-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:101:17-89
+103                android:resource="@color/navigationDividerColorDark" />
+103-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:102:17-69
+104            <meta-data
+104-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:104:13-105:54
+105                android:name="android.support.customtabs.trusted.SPLASH_IMAGE_DRAWABLE"
+105-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:104:24-95
+106                android:resource="@drawable/splash" />
+106-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:105:17-52
+107            <meta-data
+107-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:107:13-108:60
+108                android:name="android.support.customtabs.trusted.SPLASH_SCREEN_BACKGROUND_COLOR"
+108-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:107:24-104
+109                android:resource="@color/backgroundColor" />
+109-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:108:17-58
+110            <meta-data
+110-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:110:13-111:71
+111                android:name="android.support.customtabs.trusted.SPLASH_SCREEN_FADE_OUT_DURATION"
+111-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:110:24-105
+112                android:value="@integer/splashScreenFadeOutDuration" />
+112-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:111:17-69
+113            <meta-data
+113-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:113:13-114:60
+114                android:name="android.support.customtabs.trusted.FILE_PROVIDER_AUTHORITY"
+114-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:113:24-97
+115                android:value="@string/providerAuthority" />
+115-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:114:17-58
+116            <meta-data
+116-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:116:13-97
+117                android:name="android.app.shortcuts"
+117-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:116:24-60
+118                android:resource="@xml/shortcuts" />
+118-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:116:61-94
+119            <meta-data
+119-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:118:13-119:56
+120                android:name="android.support.customtabs.trusted.FALLBACK_STRATEGY"
+120-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:118:24-91
+121                android:value="@string/fallbackType" />
+121-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:119:17-53
+122            <meta-data
+122-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:125:13-126:54
+123                android:name="android.support.customtabs.trusted.SCREEN_ORIENTATION"
+123-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:125:24-92
+124                android:value="@string/orientation" />
+124-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:126:17-52
+125
+126            <intent-filter>
+126-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:132:13-135:29
+127                <action android:name="android.intent.action.MAIN" />
+127-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:133:17-69
+127-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:133:25-66
+128
+129                <category android:name="android.intent.category.LAUNCHER" />
+129-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:134:17-77
+129-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:134:27-74
+130            </intent-filter>
+131            <intent-filter android:autoVerify="true" >
+131-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:137:13-145:29
+131-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:137:28-53
+132                <action android:name="android.intent.action.VIEW" />
+132-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:138:17-68
+132-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:138:25-66
+133
+134                <category android:name="android.intent.category.DEFAULT" />
+134-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:139:17-76
+134-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:139:27-73
+135                <category android:name="android.intent.category.BROWSABLE" />
+135-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:140:17-77
+135-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:140:27-75
+136
+137                <data
+137-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:141:17-144:19
+138                    android:host="@string/hostName"
+138-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:142:21-52
+139                    android:scheme="https" />
+139-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:141:23-45
+140            </intent-filter>
+141        </activity>
+142        <activity android:name="com.google.androidbrowserhelper.trusted.FocusActivity" />
+142-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:152:9-90
+142-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:152:19-87
+143        <activity
+143-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:154:9-155:62
+144            android:name="com.google.androidbrowserhelper.trusted.WebViewFallbackActivity"
+144-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:154:19-97
+145            android:configChanges="orientation|screenSize" />
+145-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:155:13-59
+146
+147        <provider
+147-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:157:9-165:20
+148            android:name="androidx.core.content.FileProvider"
+148-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:158:13-62
+149            android:authorities="@string/providerAuthority"
+149-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:159:13-60
+150            android:exported="false"
+150-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:161:13-37
+151            android:grantUriPermissions="true" >
+151-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:160:13-47
+152            <meta-data
+152-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:162:13-164:53
+153                android:name="android.support.FILE_PROVIDER_PATHS"
+153-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:163:17-67
+154                android:resource="@xml/filepaths" />
+154-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:164:17-50
+155        </provider>
+156
+157        <service
+157-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:167:9-182:19
+158            android:name="com.auspicioustime.momentra.DelegationService"
+158-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:168:13-46
+159            android:enabled="@bool/enableNotification"
+159-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:169:13-55
+160            android:exported="@bool/enableNotification" >
+160-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:170:13-56
+161            <meta-data
+161-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:173:17-175:73
+162                android:name="android.support.customtabs.trusted.SMALL_ICON"
+162-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:174:21-81
+163                android:resource="@drawable/ic_notification_icon" />
+163-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:175:21-70
+164
+165            <intent-filter>
+165-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:178:13-181:29
+166                <action android:name="android.support.customtabs.trusted.TRUSTED_WEB_ACTIVITY_SERVICE" />
+166-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:179:17-105
+166-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:179:25-103
+167
+168                <category android:name="android.intent.category.DEFAULT" />
+168-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:139:17-76
+168-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:139:27-73
+169            </intent-filter>
+170        </service>
+171
+172        <activity android:name="com.google.androidbrowserhelper.trusted.NotificationPermissionRequestActivity" />
+172-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:185:13-118
+172-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:185:23-115
+173        <activity android:name="com.google.androidbrowserhelper.locationdelegation.PermissionRequestActivity" />
+173-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:189:13-190:89
+173-->C:\Projects\Auspicious_Time\auspicious-time\app\src\main\AndroidManifest.xml:189:23-123
+174        <activity
+174-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\02e37f92c71ffadabef41ae6f5feca22\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+175            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+175-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\02e37f92c71ffadabef41ae6f5feca22\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+176            android:exported="false"
+176-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\02e37f92c71ffadabef41ae6f5feca22\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+177            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+177-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\02e37f92c71ffadabef41ae6f5feca22\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+178
+179        <meta-data
+179-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\d176d6696a4772b4ce2a6021c61f9202\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+180            android:name="com.google.android.gms.version"
+180-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\d176d6696a4772b4ce2a6021c61f9202\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+181            android:value="@integer/google_play_services_version" />
+181-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\d176d6696a4772b4ce2a6021c61f9202\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+182
+183        <provider
+183-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\5cb7738f5242d8c4e38c8ffa2b265b31\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+184            android:name="androidx.startup.InitializationProvider"
+184-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\5cb7738f5242d8c4e38c8ffa2b265b31\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+185            android:authorities="com.auspicioustime.momentra.androidx-startup"
+185-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\5cb7738f5242d8c4e38c8ffa2b265b31\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+186            android:exported="false" >
+186-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\5cb7738f5242d8c4e38c8ffa2b265b31\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+187            <meta-data
+187-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\5cb7738f5242d8c4e38c8ffa2b265b31\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+188                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+188-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\5cb7738f5242d8c4e38c8ffa2b265b31\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+189                android:value="androidx.startup" />
+189-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\5cb7738f5242d8c4e38c8ffa2b265b31\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+190            <meta-data
+190-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\4bc52031417e9743197e36b704fe409f\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
+191                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+191-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\4bc52031417e9743197e36b704fe409f\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
+192                android:value="androidx.startup" />
+192-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\4bc52031417e9743197e36b704fe409f\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+193            <meta-data
+193-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+194                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+194-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+195                android:value="androidx.startup" />
+195-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+196        </provider>
+197
+198        <receiver
+198-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+199            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+199-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+200            android:directBootAware="false"
+200-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+201            android:enabled="true"
+201-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+202            android:exported="true"
+202-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+203            android:permission="android.permission.DUMP" >
+203-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+204            <intent-filter>
+204-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+205                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+205-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+205-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+206            </intent-filter>
+207            <intent-filter>
+207-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+208                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+208-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+208-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+209            </intent-filter>
+210            <intent-filter>
+210-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+211                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+211-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+211-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+212            </intent-filter>
+213            <intent-filter>
+213-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+214                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+214-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+214-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Ramesh\.gradle\caches\8.11.1\transforms\bb4a0d32d1b17a1dcea0cf71d2bde5e0\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+215            </intent-filter>
+216        </receiver>
+217    </application>
+218
+219</manifest>

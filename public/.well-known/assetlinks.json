@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.auspicioustime.momentra",
+      "sha256_cert_fingerprints": [
+        "47:D6:D2:9C:CF:36:74:98:F1:A9:45:44:48:DE:42:2C:CE:30:28:92:A5:26:8E:0E:1E:13:FD:76:36:78:24:90"
+      ]
+    }
+  }
+]

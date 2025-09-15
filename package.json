@@ -5,11 +5,18 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:pwa": "next build",
+    "build:mobile": "next build --config next.config.mobile.ts",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "create-icons": "node create-icons.js"
   },
   "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/cli": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
     "next": "15.4.6",
+    "next-pwa": "^5.6.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sweph": "^2.10.3-b-1"
