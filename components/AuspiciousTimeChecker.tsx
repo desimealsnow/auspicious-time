@@ -16,6 +16,13 @@ import RecommendedTimeWindows from "./RecommendedTimeWindows";
 import Footer from "./Footer";
 import type { ApiResp } from "@/lib/types";
 
+/**
+ * Renders the Auspicious Time Checker component.
+ *
+ * This component manages the loading state and API response for auspicious time windows. It processes the response to create a structured list of time periods categorized by their nature (favorable, challenging, etc.). The component also handles the display of various analysis results based on user input and API data, including error messages, score cards, and recommendations.
+ *
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function AuspiciousTimeChecker() {
   const [loading, setLoading] = useState(false);
   const [resp, setResp] = useState<ApiResp | undefined>(undefined);

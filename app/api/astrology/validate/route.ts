@@ -5,6 +5,16 @@ import { runComprehensiveValidation } from "@/lib/astro/swissValidation";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+/**
+ * Handles the GET request to validate Swiss Ephemeris configuration and return relevant information.
+ *
+ * The function attempts to load the Swiss Ephemeris adapter and configure it with the appropriate settings.
+ * It runs a comprehensive validation and returns the results along with metadata about the Swiss Ephemeris.
+ * If any errors occur during loading or validation, it returns an error response with the appropriate message.
+ *
+ * @returns A JSON response containing the validation results and Swiss Ephemeris metadata.
+ * @throws Error If loading the Swiss Ephemeris adapter or running validation fails.
+ */
 export async function GET() {
   try {
     // Load Swiss Ephemeris

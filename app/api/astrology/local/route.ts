@@ -41,10 +41,22 @@ const ACT_RULES: Record<
 
 type Window = { start: string | Date; end: string | Date };
 const toDate = (x: string | Date) => (x instanceof Date ? x : new Date(x));
+/**
+ * Checks if a date is within the start and end dates of a window.
+ */
 const within = (d: Date, w?: Window | null) =>
   !!w && d >= toDate(w.start) && d <= toDate(w.end);
 
 // Interval subtraction: base [start,end] minus many block windows -> list of safe windows
+/**
+ * Subtract intervals from a base time range based on provided blocks.
+ *
+ * The function first checks if the end date is greater than the start date. It then maps the blocks to date intervals, filters out those that do not overlap with the base interval, and sorts them. It iterates through the sorted intervals to determine the gaps between them and constructs an output array of intervals that represent the time not covered by the blocks.
+ *
+ * @param base - A tuple representing the start and end dates of the base interval.
+ * @param blocks - An array of Window objects containing start and end times to subtract from the base interval.
+ * @returns An array of date intervals that represent the time not covered by the blocks.
+ */
 function subtractIntervals(
   base: [Date, Date],
   blocks: Window[]
@@ -68,6 +80,9 @@ function subtractIntervals(
 }
 
 // Tarabala (1..9 cycle from birth nakshatra to day nakshatra)
+/**
+ * Calculates the tara and its associated name based on birth and day indices.
+ */
 function taraFor(birthIdx1: number, dayIdx1: number) {
   const dist = ((dayIdx1 - birthIdx1 + 27) % 27) + 1; // 1..27
   const tara = ((dist - 1) % 9) + 1; // 1..9
@@ -88,6 +103,9 @@ function taraFor(birthIdx1: number, dayIdx1: number) {
 }
 
 // Chandrabala (moon sign distance from Janma rashi; 6/8/12 considered inauspicious)
+/**
+ * Calculates the relationship and its quality based on birth and day Rashi.
+ */
 function chandraFor(birthRashi1: number, dayRashi1: number) {
   const rel = ((dayRashi1 - birthRashi1 + 12) % 12) + 1; // 1..12
   const isBad = [6, 8, 12].includes(rel);
@@ -95,23 +113,45 @@ function chandraFor(birthRashi1: number, dayRashi1: number) {
   return { relation: rel, isGood, isBad };
 }
 
+/**
+ * Returns the absolute path of the ephemeral directory.
+ */
 function ephePathAbs(): string {
   const raw = process.env.SE_EPHE_PATH || "./ephe";
   return path.isAbsolute(raw) ? raw : path.resolve(process.cwd(), raw);
 }
+/**
+ * Returns an array of files that are missing from the specified directory.
+ */
 function missingFiles(epheDir: string, files: string[]): string[] {
   return files.filter((f) => !fs.existsSync(path.join(epheDir, f)));
 }
 function toUTHours(d: Date): number {
   return d.getUTCHours() + d.getUTCMinutes() / 60 + d.getUTCSeconds() / 3600;
 }
+/**
+ * Normalizes an angle to the range [0, 360).
+ */
 function norm360(x: number) {
   let a = x % 360;
   if (a < 0) a += 360;
   return a;
 }
 // drop-in: super-robust longitude extractor with numeric coercion
+/**
+ * Extract the longitude value from a given input structure.
+ *
+ * The function checks various possible shapes of the input `res`, including common properties like `longitude` and `lon`,
+ * as well as array shapes and nested containers. It attempts to parse the longitude from these structures and returns
+ * the first valid numeric longitude found, or undefined if none is found.
+ *
+ * @param res - The input structure from which to extract the longitude.
+ * @returns The extracted longitude as a number, or undefined if not found.
+ */
 function getLonDeg(res: any): number | undefined {
+  /**
+   * Converts a value to a finite number or returns undefined.
+   */
   const num = (v: any) => {
     const n = typeof v === "string" ? parseFloat(v) : v;
     return typeof n === "number" && Number.isFinite(n) ? n : undefined;
@@ -145,6 +185,9 @@ function getLonDeg(res: any): number | undefined {
   return undefined;
 }
 
+/**
+ * Converts a Julian date to a JavaScript Date object.
+ */
 function jdToDate(
   swe: Awaited<ReturnType<typeof loadSwissAdapter>>["swe"],
   jd: number
@@ -156,6 +199,20 @@ function jdToDate(
   return new Date(ms);
 }
 
+/**
+ * Handles the POST request to compute astrological data based on the provided payload.
+ *
+ * The function validates the input payload, loads necessary modules, computes Julian dates,
+ * and retrieves ephemeris data for celestial bodies. It calculates tithi and nakshatra,
+ * determines sunrise and sunset times, and evaluates activity windows based on user-defined rules.
+ * Finally, it returns a comprehensive JSON response containing the computed values and status.
+ *
+ * @param req - The incoming request object containing the payload with date of birth, target date,
+ *               latitude, longitude, and optional activity type.
+ * @returns A JSON response with computed astrological data, including tithi, nakshatra,
+ *          sunrise, sunset, and activity verdict.
+ * @throws Error If there is an internal error during processing.
+ */
 export async function POST(req: Request) {
   try {
     const body = (await req.json()) as Payload;
@@ -224,6 +281,17 @@ export async function POST(req: Request) {
     const ephFlag = allowFallback ? swe.SEFLG_MOSEPH : swe.SEFLG_SWIEPH;
 
     // ---- TITHI & NAKSHATRA (use calc_ut via sync or async wrapper) ----
+    /**
+     * Calculates the Universal Time (UT) using either a synchronous or asynchronous method.
+     *
+     * The function attempts to call the synchronous method `calc_ut_sync` from the `swe` object,
+     * passing in `jdUT`, `ipl`, and `flags`. If the synchronous method is not available or returns
+     * nullish, it falls back to the asynchronous method `calc_ut_async`, awaiting its result.
+     * This ensures that the calculation is performed using the most appropriate method based on availability.
+     *
+     * @param ipl - The input parameter representing the observer's latitude.
+     * @param flags - The flags that modify the calculation behavior.
+     */
     const getCalc = async (ipl: number, flags: number) =>
       (swe as any).calc_ut_sync?.(jdUT, ipl, flags) ??
       (await (swe as any).calc_ut_async?.(jdUT, ipl, flags));
@@ -397,6 +465,19 @@ export async function POST(req: Request) {
       .toLowerCase()
       .replace(/\s+/g, "_");
     const rule = ACT_RULES[activityKey] ?? ACT_RULES.general;
+    /**
+     * Calculates Universal Time from Julian Date.
+     *
+     * This function attempts to calculate Universal Time synchronously using the
+     * `calc_ut_sync` method from the `swe` object. If that method is not available,
+     * it falls back to the asynchronous `calc_ut_async` method. The function takes
+     * a Julian Date, an integer for the input parameters, and flags to control the
+     * calculation process.
+     *
+     * @param {number} jd - The Julian Date for which to calculate Universal Time.
+     * @param {number} ipl - An integer representing the input parameters.
+     * @param {number} flags - Flags to control the calculation process.
+     */
     const calcAt = async (jd: number, ipl: number, flags: number) =>
       (swe as any).calc_ut_sync?.(jd, ipl, flags) ??
       (await (swe as any).calc_ut_async?.(jd, ipl, flags));

@@ -4,6 +4,14 @@ import { loadSwissAdapter } from "@/lib/astro/swissAdapter";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+/**
+ * Handles the GET request to test the Swiss Ephemeris functionality.
+ *
+ * This function attempts to load the Swiss Ephemeris adapter and configure it with the appropriate settings. It then calculates the Julian Day for a test date and performs calculations for both the Sun and Moon. If any step fails, it returns an error response with relevant details. Finally, it returns a success response with the results of the calculations.
+ *
+ * @returns A JSON response indicating the success or failure of the Swiss Ephemeris tests, including details of the calculations performed.
+ * @throws Error If loading the Swiss Ephemeris adapter or performing calculations fails.
+ */
 export async function GET() {
   try {
     // Load Swiss Ephemeris
