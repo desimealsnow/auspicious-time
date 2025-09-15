@@ -1,26 +1,47 @@
 import { ApiResp } from "@/lib/types";
 
 export default function VerdictStrip({ r }: { r: ApiResp }) {
-  if (!r?.verdict) return null;
+  // Use enhanced activity analysis if available, fallback to legacy verdict
+  const activity = r?.activity;
+  const verdict = r?.verdict;
+
+  if (!activity && !verdict) return null;
+
+  const recommendation = activity?.recommendation || verdict?.status;
+  const score = activity?.score || verdict?.score || 0;
+  const interpretation =
+    activity?.interpretation || "This is an auspicious time for your activity";
 
   const tone =
-    r.verdict.status === "Proceed"
+    recommendation === "EXCELLENT" || recommendation === "Proceed"
       ? "bg-good"
-      : r.verdict.status === "Proceed with caution"
+      : recommendation === "GOOD" || recommendation === "Proceed with caution"
       ? "bg-warn"
+      : recommendation === "NEUTRAL"
+      ? "bg-neutral"
       : "bg-bad";
 
   const label =
-    r.verdict.status === "Proceed"
+    recommendation === "EXCELLENT"
+      ? "Excellent"
+      : recommendation === "GOOD" || recommendation === "Proceed"
       ? "Good"
-      : r.verdict.status === "Proceed with caution"
-      ? "Caution"
+      : recommendation === "NEUTRAL" ||
+        recommendation === "Proceed with caution"
+      ? "Neutral"
+      : recommendation === "CHALLENGING"
+      ? "Challenging"
       : "Avoid";
 
   const icon =
-    r.verdict.status === "Proceed"
+    recommendation === "EXCELLENT"
+      ? "🌟"
+      : recommendation === "GOOD" || recommendation === "Proceed"
       ? "✨"
-      : r.verdict.status === "Proceed with caution"
+      : recommendation === "NEUTRAL" ||
+        recommendation === "Proceed with caution"
+      ? "⚡"
+      : recommendation === "CHALLENGING"
       ? "⚠️"
       : "⛔";
 
@@ -30,9 +51,10 @@ export default function VerdictStrip({ r }: { r: ApiResp }) {
     >
       <span className="text-lg">{icon}</span>
       <span className="font-semibold">{label}</span>
-      <span className="opacity-90">
-        This is an auspicious time for your activity
-      </span>
+      <span className="opacity-90">{interpretation}</span>
+      {score > 0 && (
+        <span className="ml-auto text-sm opacity-75">Score: {score}/100</span>
+      )}
     </div>
   );
 }

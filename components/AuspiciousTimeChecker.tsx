@@ -12,6 +12,7 @@ import TimelineBar from "./TimelineBar";
 import SafeWindows from "./SafeWindows";
 import Reasons from "./Reasons";
 import ModernHowItWorks from "./ModernHowItWorks";
+import RecommendedTimeWindows from "./RecommendedTimeWindows";
 import Footer from "./Footer";
 import type { ApiResp } from "@/lib/types";
 
@@ -19,16 +20,41 @@ export default function AuspiciousTimeChecker() {
   const [loading, setLoading] = useState(false);
   const [resp, setResp] = useState<ApiResp | undefined>(undefined);
 
-  const windows = resp
+  const windows = resp?.time_windows?.all_periods
+    ? resp.time_windows.all_periods.map((period) => ({
+        label: period.name,
+        color:
+          period.type === "favorable"
+            ? "#06b6d4"
+            : period.type === "challenging"
+            ? "#ef4444"
+            : "#f59e0b",
+        list: [{ start: period.start, end: period.end }],
+        description: period.description,
+        type: period.type,
+      }))
+    : resp
     ? [
         {
-          label: "Abhijit",
-          color: "#06b6d4",
+          label: "Favorable Periods",
+          color: "#10b981",
           list: resp.abhijit_muhurta ?? [],
         },
-        { label: "Rahu", color: "#ef4444", list: resp.rahu_kalam ?? [] },
-        { label: "Yamaganda", color: "#f59e0b", list: resp.yamaganda ?? [] },
-        { label: "Gulika", color: "#f97316", list: resp.gulika_kalam ?? [] },
+        {
+          label: "Challenging Periods",
+          color: "#ef4444",
+          list: resp.rahu_kalam ?? [],
+        },
+        {
+          label: "Restrictive Periods",
+          color: "#f59e0b",
+          list: resp.yamaganda ?? [],
+        },
+        {
+          label: "Shadow Periods",
+          color: "#f97316",
+          list: resp.gulika_kalam ?? [],
+        },
       ]
     : [];
 
@@ -81,10 +107,10 @@ export default function AuspiciousTimeChecker() {
                 </div>
               )}
 
-              {resp.verdict && <VerdictStrip r={resp} />}
+              {(resp.verdict || resp.activity) && <VerdictStrip r={resp} />}
 
               {/* Your Muhurta Analysis */}
-              {resp.verdict && (
+              {(resp.verdict || resp.activity) && (
                 <div>
                   <h2 className="text-2xl font-semibold text-center mb-2">
                     Your Muhurta Analysis
@@ -94,37 +120,55 @@ export default function AuspiciousTimeChecker() {
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <ScoreCard score={resp.verdict?.score ?? 0} />
+                    <ScoreCard
+                      score={resp.verdict?.score ?? resp.activity?.score ?? 0}
+                    />
                     <InfoCard
-                      title="Tarabala"
+                      title="Stellar Compatibility"
                       value={
                         resp.tarabala
                           ? resp.tarabala.isGood
                             ? "Favorable"
                             : "Unfavorable"
-                          : "Neutral"
+                          : resp.activity?.confidence === "high"
+                          ? "Strong"
+                          : "Moderate"
                       }
-                      sub={resp.tarabala?.name}
+                      sub={
+                        resp.tarabala?.name ||
+                        resp.activity?.confidence ||
+                        "Analysis"
+                      }
                       status={getStatusFromValue(
-                        resp.tarabala?.name ?? "",
-                        resp.tarabala?.isGood
+                        resp.tarabala?.name ?? resp.activity?.confidence ?? "",
+                        resp.tarabala?.isGood ??
+                          (resp.activity?.score ?? 0) > 60
                       )}
                     />
                     <InfoCard
-                      title="Chandrabala"
+                      title="Lunar Harmony"
                       value={
                         resp.chandrabala
                           ? `${resp.chandrabala.relation}/12`
+                          : resp.activity?.score
+                          ? `${Math.floor((resp.activity.score ?? 0) / 10)}/10`
                           : "—"
                       }
                       sub={
                         resp.chandrabala?.isGood
                           ? "Good moon relationship harmony level"
-                          : "Neutral"
+                          : resp.activity?.score
+                          ? (resp.activity.score ?? 0) > 60
+                            ? "Favorable"
+                            : "Challenging"
+                          : "Analysis"
                       }
                       status={getStatusFromValue(
-                        resp.chandrabala?.relation.toString() ?? "",
-                        resp.chandrabala?.isGood
+                        resp.chandrabala?.relation.toString() ??
+                          resp.activity?.score?.toString() ??
+                          "",
+                        resp.chandrabala?.isGood ??
+                          (resp.activity?.score ?? 0) > 60
                       )}
                     />
                   </div>
@@ -142,7 +186,26 @@ export default function AuspiciousTimeChecker() {
               )}
 
               <SafeWindows list={resp.safe_windows} />
-              <Reasons list={resp.verdict?.reasons} />
+
+              {/* Show alternative favorable times if current time is not good */}
+              {resp.time_windows?.alternative_times &&
+                resp.time_windows.alternative_times.length > 0 && (
+                  <RecommendedTimeWindows
+                    alternativeTimes={resp.time_windows.alternative_times}
+                  />
+                )}
+
+              <Reasons
+                list={
+                  resp.verdict?.reasons || resp.recommendations
+                    ? [
+                        resp.recommendations?.immediate,
+                        resp.recommendations?.optimal_timing,
+                        resp.recommendations?.general_advice,
+                      ].filter((item): item is string => Boolean(item))
+                    : []
+                }
+              />
             </section>
           )}
         </main>

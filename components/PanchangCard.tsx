@@ -26,16 +26,28 @@ export default function PanchangCard({ r }: { r: ApiResp }) {
         <div className="space-y-2">
           <Row
             icon="🌙"
-            label="Tithi"
-            value={r.tithi?.name ? `${r.tithi.name} (${r.tithi.index})` : "—"}
+            label="Lunar Phase"
+            value={
+              r.tithi?.name
+                ? `${r.tithi.name} (${r.tithi.index})`
+                : r.planetary?.positions?.find((p) => p.name === "moon")?.sign
+                ? `Moon in ${
+                    r.planetary.positions.find((p) => p.name === "moon")?.sign
+                  }`
+                : "—"
+            }
             color="text-blue-500"
           />
           <Row
             icon="⭐"
-            label="Nakshatra"
+            label="Stellar Position"
             value={
               r.nakshatra?.name
                 ? `${r.nakshatra.name} (${r.nakshatra.index})`
+                : r.planetary?.positions?.find((p) => p.name === "sun")?.sign
+                ? `Sun in ${
+                    r.planetary.positions.find((p) => p.name === "sun")?.sign
+                  }`
                 : "—"
             }
             color="text-purple-500"

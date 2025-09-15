@@ -31,7 +31,7 @@ export default function ModernMuhurtaForm({
       const targetISO = new Date(
         `${eventDate}T${eventTime}:00.000Z`
       ).toISOString();
-      const res = await fetch("/api/astrology/local", {
+      const res = await fetch("/api/astrology/enhanced", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({

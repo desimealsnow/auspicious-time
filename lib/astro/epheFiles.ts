@@ -9,7 +9,7 @@
 
 export function bandSuffixForYear(year: number): string {
   const start = Math.floor(year / 600) * 600; // 1800, 2400, 3000, ...
-  const suffix = String(Math.floor(start / 100)).padStart(2, '0'); // 1800 -> "18"
+  const suffix = String(Math.floor(start / 100)).padStart(2, "0"); // 1800 -> "18"
   return suffix;
 }
 
@@ -22,4 +22,15 @@ export function requiredFilesForYear(year: number): string[] {
 export function optionalFilesForYear(year: number): string[] {
   const s = bandSuffixForYear(year);
   return [`seas_${s}.se1`];
+}
+
+// Get the appropriate ephemeris flag for a given year
+export function getEphemerisFlag(year: number): number {
+  // For years within the Swiss Ephemeris range (1800-2399), use SEFLG_SWIEPH
+  // For years outside this range, use SEFLG_MOSEPH as fallback
+  if (year >= 1800 && year <= 2399) {
+    return 0x00000002; // SEFLG_SWIEPH
+  } else {
+    return 0x00000001; // SEFLG_MOSEPH (fallback)
+  }
 }
