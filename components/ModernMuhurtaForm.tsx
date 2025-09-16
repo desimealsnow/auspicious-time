@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import GooglePlacesInput from "./GooglePlacesInput";
 import type { ApiResp } from "@/lib/types";
 
 type Props = {
@@ -17,12 +18,13 @@ export default function ModernMuhurtaForm({
   const [dob, setDob] = useState("1989-07-24");
   const [tob, setTob] = useState("06:35");
   const [pob, setPob] = useState("Bengaluru, India");
-  const [activity, setActivity] = useState("travel");
+  const [birthLat, setBirthLat] = useState<string>("");
+  const [birthLon, setBirthLon] = useState<string>("");
   const [eventDate, setEventDate] = useState("2025-09-20");
   const [eventTime, setEventTime] = useState("10:30");
   const [eventLoc, setEventLoc] = useState("Mumbai, India");
-  const [lat, setLat] = useState("19.076");
-  const [lon, setLon] = useState("72.8777");
+  const [eventLat, setEventLat] = useState<string>("19.076");
+  const [eventLon, setEventLon] = useState<string>("72.8777");
 
   const submit = async () => {
     setLoading(true);
@@ -37,10 +39,11 @@ export default function ModernMuhurtaForm({
         body: JSON.stringify({
           dobISO,
           targetISO,
-          lat: Number(lat),
-          lon: Number(lon),
+          birthLat: birthLat ? Number(birthLat) : undefined,
+          birthLon: birthLon ? Number(birthLon) : undefined,
+          eventLat: Number(eventLat),
+          eventLon: Number(eventLon),
           tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
-          activity,
         }),
       });
       const data: ApiResp = await res.json();
@@ -54,7 +57,28 @@ export default function ModernMuhurtaForm({
   };
 
   const clear = () => {
-    setActivity("travel");
+    setDob("1989-07-24");
+    setTob("06:35");
+    setPob("Bengaluru, India");
+    setBirthLat("");
+    setBirthLon("");
+    setEventDate("2025-09-20");
+    setEventTime("10:30");
+    setEventLoc("Mumbai, India");
+    setEventLat("19.076");
+    setEventLon("72.8777");
+  };
+
+  const useMyLocation = () => {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setEventLat(String(pos.coords.latitude));
+        setEventLon(String(pos.coords.longitude));
+      },
+      () => {},
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
   };
 
   return (
@@ -97,11 +121,14 @@ export default function ModernMuhurtaForm({
             {/* Place of birth */}
             <div>
               <label className="label">Place of birth</label>
-              <input
-                className="input"
+              <GooglePlacesInput
                 placeholder="City, Country"
                 value={pob}
-                onChange={(e) => setPob(e.target.value)}
+                onChange={setPob}
+                onSelect={(p) => {
+                  if (p.lat !== undefined) setBirthLat(String(p.lat));
+                  if (p.lon !== undefined) setBirthLon(String(p.lon));
+                }}
               />
             </div>
 
@@ -116,34 +143,15 @@ export default function ModernMuhurtaForm({
               />
             </div>
 
-            {/* Activity and Event time */}
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="label">Activity</label>
-                <select
-                  className="input"
-                  value={activity}
-                  onChange={(e) => setActivity(e.target.value)}
-                >
-                  <option value="travel">Travel</option>
-                  <option value="marriage">Marriage</option>
-                  <option value="new_business">New business</option>
-                  <option value="puja">Puja</option>
-                  <option value="interview">Interview</option>
-                  <option value="property">Property</option>
-                  <option value="surgery">Surgery</option>
-                  <option value="general">General</option>
-                </select>
-              </div>
-              <div>
-                <label className="label">Event time</label>
-                <input
-                  className="input"
-                  type="time"
-                  value={eventTime}
-                  onChange={(e) => setEventTime(e.target.value)}
-                />
-              </div>
+            {/* Event time */}
+            <div>
+              <label className="label">Event time</label>
+              <input
+                className="input"
+                type="time"
+                value={eventTime}
+                onChange={(e) => setEventTime(e.target.value)}
+              />
             </div>
 
             {/* Event date */}
@@ -160,29 +168,43 @@ export default function ModernMuhurtaForm({
             {/* Event location */}
             <div>
               <label className="label">Event location</label>
-              <input
-                className="input"
-                placeholder="City, Country"
-                value={eventLoc}
-                onChange={(e) => setEventLoc(e.target.value)}
-              />
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <GooglePlacesInput
+                    placeholder="City, Country"
+                    value={eventLoc}
+                    onChange={setEventLoc}
+                    onSelect={(p) => {
+                      if (p.lat !== undefined) setEventLat(String(p.lat));
+                      if (p.lon !== undefined) setEventLon(String(p.lon));
+                    }}
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={useMyLocation}
+                  className="px-3 py-2 rounded-xl bg-white/10 border border-white/20 text-white/80 hover:text-white hover:bg-white/20"
+                >
+                  Use my location
+                </button>
+              </div>
             </div>
 
-            {/* Lat/Lon for API */}
+            {/* Coordinates */}
             <div>
               <label className="label">Latitude</label>
               <input
                 className="input"
-                value={lat}
-                onChange={(e) => setLat(e.target.value)}
+                value={eventLat}
+                onChange={(e) => setEventLat(e.target.value)}
               />
             </div>
             <div>
               <label className="label">Longitude</label>
               <input
                 className="input"
-                value={lon}
-                onChange={(e) => setLon(e.target.value)}
+                value={eventLon}
+                onChange={(e) => setEventLon(e.target.value)}
               />
             </div>
           </div>

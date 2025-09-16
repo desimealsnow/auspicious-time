@@ -11,9 +11,11 @@ export const dynamic = "force-dynamic";
 interface EnhancedPayload {
   dobISO: string;
   targetISO: string;
-  lat: number;
-  lon: number;
   tz: string;
+  birthLat?: number;
+  birthLon?: number;
+  eventLat: number;
+  eventLon: number;
   activity?: string;
 }
 
@@ -23,10 +25,9 @@ export async function POST(req: Request) {
     if (
       !body?.dobISO ||
       !body?.targetISO ||
-      !body?.lat ||
-      !body?.lon ||
-      !body?.tz ||
-      !body?.activity
+      typeof body?.eventLat !== "number" ||
+      typeof body?.eventLon !== "number" ||
+      !body?.tz
     ) {
       return NextResponse.json(
         { ok: false, error: "Missing required fields" },
@@ -108,11 +109,11 @@ export async function POST(req: Request) {
     const scoringRequest: ScoringRequest = {
       birthDate: body.dobISO,
       birthTime: birthTime,
-      birthLat: body.lat,
-      birthLon: body.lon,
+      birthLat: typeof body.birthLat === "number" ? body.birthLat : undefined,
+      birthLon: typeof body.birthLon === "number" ? body.birthLon : undefined,
       eventTime: eventTime,
-      eventLat: body.lat,
-      eventLon: body.lon,
+      eventLat: body.eventLat,
+      eventLon: body.eventLon,
       activity: body.activity || "general",
     };
 
@@ -122,13 +123,13 @@ export async function POST(req: Request) {
     // Calculate sunrise and sunset for context
     const sunrise = await sunriseSunsetUTC(
       result.stableIntervals[0]?.best || new Date(body.targetISO),
-      body.lat,
-      body.lon
+      body.eventLat,
+      body.eventLon
     );
     const sunset = await sunriseSunsetUTC(
       result.stableIntervals[0]?.best || new Date(body.targetISO),
-      body.lat,
-      body.lon
+      body.eventLat,
+      body.eventLon
     );
 
     if (!sunrise || !sunset) {
@@ -172,15 +173,17 @@ export async function POST(req: Request) {
     // Create response with unified scoring
     const response = {
       ok: true,
-      activity: {
-        name: getActivityName(body.activity || "general"),
-        score: result.score,
-        recommendation: result.recommendation,
-        reasons: result.reasons,
-        breakdown: result.breakdown,
-        scoreId: result.scoreId,
-        level: result.level,
-      },
+      ...(result && {
+        activity: {
+          name: getActivityName(body.activity || "general"),
+          score: result.score,
+          recommendation: result.recommendation,
+          reasons: result.reasons,
+          breakdown: result.breakdown,
+          scoreId: result.scoreId,
+          level: result.level,
+        },
+      }),
       time_windows: {
         current: {
           start:

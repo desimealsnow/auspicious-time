@@ -9,7 +9,8 @@
     "build:mobile": "next build --config next.config.mobile.ts",
     "start": "next start",
     "lint": "next lint",
-    "create-icons": "node create-icons.js"
+    "create-icons": "node create-icons.js",
+    "test:places": "node scripts/test-places.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^7.4.3",
@@ -31,6 +32,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

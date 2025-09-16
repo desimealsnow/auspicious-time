@@ -8,7 +8,7 @@ A sophisticated web application that combines Vedic astrology, numerology, and t
 - **🔢 Numerology**: Life path and personal day calculations
 - **⏰ Time Intelligence**: Hour-based recommendations for different activities
 - **👤 Personalized Analysis**: Tarabala and Chandrabala based on birth details
-- **🎯 Activity-Specific Rules**: Tailored evaluation criteria for travel, marriage, business, etc.
+- **🎯 Smart Rules**: Activity heuristics in engine (UI no longer asks for activity)
 - **📱 Modern UI**: Responsive dark-themed interface with geolocation support
 - **💰 Donation Integration**: Razorpay payment gateway with UPI fallback
 
@@ -20,9 +20,9 @@ git clone <repository-url>
 cd auspicious-time
 npm install
 
-# Set up environment
-cp .env.example .env.local
-# Edit .env.local with your configuration
+# Set up environment (Windows PowerShell)
+Copy-Item .env.example .env
+# Edit .env and set your API keys (see below)
 
 # Start development server
 npm run dev
@@ -37,7 +37,7 @@ The application uses a sophisticated 0-100 scoring system that combines:
 1. **Numerology (20%)**: Compatibility between birth date and target date
 2. **Astrology (80%)**: Vedic calculations including:
    - Tarabala (birth nakshatra compatibility)
-   - Chandrabala (moon position analysis)  
+   - Chandrabala (moon position analysis)
    - Vedic time windows (avoids Rahu Kalam, etc.)
 3. **Time Heuristics**: Hour-based adjustments (+/- based on time of day)
 
@@ -54,33 +54,34 @@ The application uses a sophisticated 0-100 scoring system that combines:
 ### Environment Variables
 
 ```bash
-# Swiss Ephemeris Configuration
-SE_EPHE_PATH=./ephe                    # Path to ephemeris files
-SE_ALLOW_MOSHIER=1                     # Allow fallback calculations
+# Google Places (required for location inputs)
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_API_KEY
 
-# Payment Integration (Optional)
-NEXT_PUBLIC_RAZORPAY_KEY_ID=rzp_live_...  # Razorpay key for donations
+# Swiss Ephemeris (recommended for on-device/SSR accuracy)
+SE_EPHE_PATH=./ephe
+SE_ALLOW_MOSHIER=1
+
+# Payment Integration (optional)
+NEXT_PUBLIC_RAZORPAY_KEY_ID=rzp_live_...
 ```
 
 ### Ephemeris Files
 
 Place Swiss Ephemeris files in the `ephe/` directory:
+
 - `sepl_18.se1` - Planetary data (1800-2399)
 - `semo_18.se1` - Moon data (1800-2399)
 - `seas_18.se1` - Asteroid data (optional)
 
 Files are automatically selected based on the calculation year.
 
-## 🎯 Supported Activities
+If ephemeris files are not present and `SE_ALLOW_MOSHIER=1`, the system falls back to Moshier.
 
-- **Travel**: Travel and relocation planning
-- **Marriage**: Wedding ceremonies and relationship events
-- **New Business**: Business launches and ventures
-- **Puja**: Spiritual practices and religious ceremonies
-- **Finance**: Financial decisions and investments
-- **Study**: Exams and educational activities
-- **Health**: Medical procedures and health decisions
-- **Custom**: User-defined activities
+## 📍 Location & Places
+
+- UI location fields (Place of birth, Event location) use Google Places Autocomplete (new `gmpx-place-autocomplete`).
+- Ensure your API key has Places API (New) enabled and billing is on.
+- For local dev, allow the HTTP referrer `http://localhost:3000/*` on the key.
 
 ## 📚 Documentation
 
@@ -95,31 +96,32 @@ Files are automatically selected based on the calculation year.
 
 ```javascript
 // Main evaluation function
-import { evaluateTime } from '@/lib/evaluator';
+import { evaluateTime } from "@/lib/evaluator";
 
 const result = evaluateTime({
-  dobISO: '1990-05-15T08:30:00.000Z',
-  targetISO: '2024-01-20T10:00:00.000Z', 
-  activity: 'new_business'
+  dobISO: "1990-05-15T08:30:00.000Z",
+  targetISO: "2024-01-20T10:00:00.000Z",
+  activity: "new_business",
 });
 
-console.log(result.verdict);  // 'GOOD' | 'OKAY' | 'AVOID'
-console.log(result.score);    // 0-100
+console.log(result.verdict); // 'GOOD' | 'OKAY' | 'AVOID'
+console.log(result.score); // 0-100
 ```
 
 ```javascript
-// Astrology API endpoint
-const response = await fetch('/api/astrology/local', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+// Enhanced Astrology API endpoint (unified scoring)
+const response = await fetch("/api/astrology/enhanced", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    dobISO: '1990-05-15T08:30:00.000Z',
-    targetISO: '2024-01-20T10:00:00.000Z',
-    lat: 12.9716,
-    lon: 77.5946,
-    tz: 'Asia/Kolkata',
-    activity: 'marriage'
-  })
+    dobISO: "1990-05-15T08:30:00.000Z",
+    targetISO: "2025-01-20T10:00:00.000Z",
+    birthLat: 12.9716, // optional
+    birthLon: 77.5946, // optional
+    eventLat: 19.076,
+    eventLon: 72.8777,
+    tz: "Asia/Kolkata",
+  }),
 });
 ```
 
@@ -138,10 +140,12 @@ const response = await fetch('/api/astrology/local', {
 ```
 auspicious-time/
 ├── app/
-│   ├── api/astrology/local/     # Astrology calculation API
+│   ├── api/astrology/enhanced/  # Unified scoring API (Swiss-based)
+│   ├── api/astrology/local/     # Lightweight daily windows API
 │   └── page.tsx                 # Main application page
 ├── components/
 │   ├── AuspiciousTimeChecker.tsx  # Main UI component
+│   ├── GooglePlacesInput.tsx      # Places Autocomplete input (web component)
 │   └── RazorpayDonate.tsx         # Payment component
 ├── lib/
 │   ├── evaluator.ts             # Core evaluation logic
@@ -180,9 +184,9 @@ auspicious-time/
 ### Running Tests
 
 ```bash
-npm run test          # Run unit tests
-npm run test:watch    # Watch mode
-npm run test:coverage # Coverage report
+# Backend Places Autocomplete test (validates API key)
+# PowerShell (Windows)
+cmd /c "set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_KEY && node scripts/test-places.mjs Mum"
 ```
 
 ### Linting & Formatting
@@ -258,6 +262,7 @@ This application implements traditional Vedic astrology concepts:
 ### Numerology Foundation
 
 Uses Pythagorean numerology principles:
+
 - Life path numbers determine personality and life patterns
 - Personal day numbers influence daily energy
 - Master numbers (11, 22) carry special significance
@@ -281,8 +286,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-<<<<<<< Current (Your changes)
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
 For detailed documentation, see the [docs/](./docs/) directory or start with the [Quick Reference Guide](./docs/QUICK_REFERENCE.md).
->>>>>>> Incoming (Background Agent changes)
