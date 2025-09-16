@@ -15,6 +15,16 @@ type Props = {
   onSelect?: (place: PlacePick) => void;
 };
 
+/**
+ * Google Places Input component for location autocomplete functionality.
+ *
+ * This component initializes Google Maps Places API and creates an input field for users to type in locations. It handles loading the necessary scripts, creating the input and autocomplete elements, and managing events for place selection and input changes. The component also synchronizes the input value with the selected place and triggers the appropriate callbacks.
+ *
+ * @param value - The current value of the input field.
+ * @param placeholder - The placeholder text for the input field.
+ * @param onChange - Callback function triggered when the input value changes.
+ * @param onSelect - Callback function triggered when a place is selected.
+ */
 export default function GooglePlacesInput({
   value,
   placeholder,
@@ -40,6 +50,15 @@ export default function GooglePlacesInput({
     type GmpWindow = Window & { google?: GoogleNs; gmpx?: unknown };
     const w = window as unknown as GmpWindow;
 
+    /**
+     * Ensures that the Google Maps and extended component libraries are loaded before executing a callback.
+     *
+     * This function checks if the necessary Google Maps libraries are already loaded and, if not, dynamically loads them.
+     * It manages script loading by reusing existing scripts or creating new ones, and handles the loading of the extended component library if required.
+     * The function also implements a fallback mechanism to load the Maps JavaScript API if the importLibrary method is not available within a specified timeout.
+     *
+     * @param cb - A callback function to be executed once the libraries are loaded.
+     */
     function ensureMapsAndComponentsLoaded(cb: () => void) {
       const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -56,6 +75,18 @@ export default function GooglePlacesInput({
       const extSrc =
         "https://unpkg.com/@googlemaps/extended-component-library@0.6/dist/index.min.js";
 
+      /**
+       * Ensures that a script is loaded and ready for use.
+       *
+       * The function first checks if a readyCheck function is provided and if it returns true. If so, it resolves immediately.
+       * It then checks for an existing script element by ID or source, resolving if already loaded.
+       * If not found, it creates a new script element, sets its attributes, and appends it to the document head, resolving once loaded.
+       *
+       * @param src - The source URL of the script to be loaded.
+       * @param id - The unique identifier for the script element.
+       * @param opts - Optional parameters including typeModule to specify module type and readyCheck for a readiness check.
+       * @returns A promise that resolves when the script is loaded.
+       */
       const ensureScript = (
         src: string,
         id: string,
@@ -126,6 +157,15 @@ export default function GooglePlacesInput({
         }
         // Prefer the modern importLibrary flow instead of checking for google.maps.places
         const start = Date.now();
+        /**
+         * Handles the loading of the Google Maps Places library.
+         *
+         * The function checks if the Google Maps library is available and attempts to import the 'places' library.
+         * If the import fails or times out after 10 seconds, it injects a fallback script to load the library.
+         * The callback function `cb` is called upon successful import or fallback loading.
+         *
+         * @param cb - A callback function to be executed after the library is loaded or on failure.
+         */
         const tick = () => {
           const gm = (window as any).google?.maps;
           if (gm?.importLibrary) {
@@ -169,6 +209,16 @@ export default function GooglePlacesInput({
       });
     }
 
+    /**
+     * Initializes the input element and the associated autocomplete component.
+     *
+     * This function checks for the existence of hostRef and compRef, creating an input element and an autocomplete component if they are missing. It sets up event listeners for place changes and input events, synchronizing the input value with external data. The function also handles cleanup of event listeners when the component is unmounted.
+     *
+     * @param placeholder - The placeholder text for the input element.
+     * @param value - The initial value to set for the input element.
+     * @param onChange - Callback function to handle changes in the input value.
+     * @param onSelect - Optional callback function to handle selection of a place.
+     */
     function initElement() {
       if (!hostRef.current) {
         console.warn("[Places] hostRef missing");
@@ -209,6 +259,15 @@ export default function GooglePlacesInput({
       if (inputElRef.current && inputElRef.current.value !== value) {
         inputElRef.current.value = value;
       }
+      /**
+       * Handles the processing of place information from an input element.
+       *
+       * The function retrieves the formatted address, latitude, and longitude from the input element's value. It logs the details to the console and invokes the onChange and onSelect callbacks if applicable. The function is wrapped in a try-catch block to handle potential errors gracefully without throwing exceptions.
+       *
+       * @param el - The input element containing place information.
+       * @param onChange - A callback function to be called with the formatted address if it exists.
+       * @param onSelect - An optional callback function to be called with the place details.
+       */
       const handler = () => {
         try {
           const place = el.value as
@@ -234,6 +293,9 @@ export default function GooglePlacesInput({
       };
       el.addEventListener("gmpx-placechange", handler as EventListener);
       // Also bubble manual typing to parent state
+      /**
+       * Handles input events by logging the current value and invoking onChange.
+       */
       const inputHandler = () => {
         if (inputElRef.current) {
           const v = inputElRef.current.value;
