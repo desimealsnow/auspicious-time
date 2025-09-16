@@ -10,6 +10,19 @@ type Props = {
   setLoading: (b: boolean) => void;
 };
 
+/**
+ * A React component for analyzing auspicious timings based on user input.
+ *
+ * This component collects user details such as date of birth, time of birth, place of birth, event date, event time, and event location.
+ * It submits this information to an API to retrieve astrological data and displays the results.
+ * The component also provides functionality to clear the form and use the user's current location for event coordinates.
+ *
+ * @param {Object} Props - The properties for the component.
+ * @param {function} Props.onResult - Callback function to handle the result from the API.
+ * @param {boolean} Props.loading - Indicates if the component is in a loading state.
+ * @param {function} Props.setLoading - Function to set the loading state.
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function ModernMuhurtaForm({
   onResult,
   loading,
@@ -26,6 +39,14 @@ export default function ModernMuhurtaForm({
   const [eventLat, setEventLat] = useState<string>("19.076");
   const [eventLon, setEventLon] = useState<string>("72.8777");
 
+  /**
+   * Submits user data to the astrology API.
+   *
+   * This function sets a loading state, constructs ISO date strings from the provided date of birth and event date,
+   * and sends a POST request to the "/api/astrology/enhanced" endpoint with the necessary parameters.
+   * It handles the response by calling the onResult function with the received data or an error message if the request fails,
+   * and ensures the loading state is reset after the operation.
+   */
   const submit = async () => {
     setLoading(true);
     try {
@@ -56,6 +77,9 @@ export default function ModernMuhurtaForm({
     }
   };
 
+  /**
+   * Resets various date and location settings to predefined values.
+   */
   const clear = () => {
     setDob("1989-07-24");
     setTob("06:35");
@@ -69,6 +93,9 @@ export default function ModernMuhurtaForm({
     setEventLon("72.8777");
   };
 
+  /**
+   * Retrieves the user's current location and sets latitude and longitude.
+   */
   const useMyLocation = () => {
     if (!navigator.geolocation) return;
     navigator.geolocation.getCurrentPosition(
