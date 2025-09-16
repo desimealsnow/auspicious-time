@@ -81,7 +81,17 @@ If ephemeris files are not present and `SE_ALLOW_MOSHIER=1`, the system falls ba
 
 - UI location fields (Place of birth, Event location) use Google Places Autocomplete (new `gmpx-place-autocomplete`).
 - Ensure your API key has Places API (New) enabled and billing is on.
+- Billing is REQUIRED for Places Autocomplete. Enable it here (choose your project): https://console.cloud.google.com/billing
 - For local dev, allow the HTTP referrer `http://localhost:3000/*` on the key.
+
+Checklist (must do):
+
+- Enable Places API (New): https://console.developers.google.com/apis/api/places.googleapis.com/overview
+- Attach a valid billing account to the project: https://console.cloud.google.com/billing
+- Wait a few minutes for changes to propagate
+- Verify with backend test:
+  - `cmd /c "set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=YOUR_KEY && node scripts/test-places.mjs Mum"`
+  - Expect `OK { suggestion: "Mumbai, Maharashtra, India", ... }`
 
 ## 📚 Documentation
 

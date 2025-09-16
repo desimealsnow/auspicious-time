@@ -36,6 +36,7 @@ Environment
 - API key requirements
   - Enable Places API (New) for the project, billing enabled
   - Allow localhost:3000 referrer for local development
+  - If suggestions time out: verify a billing account is attached to the same project as the API key
 
 Testing the Places key (no browser)
 
