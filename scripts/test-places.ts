@@ -6,6 +6,9 @@
 
 import https from "node:https";
 
+/**
+ * Retrieves the value of an environment variable by its key.
+ */
 function getEnv(key: string): string {
   const val = process.env[key];
   if (!val) {
@@ -14,6 +17,9 @@ function getEnv(key: string): string {
   return val;
 }
 
+/**
+ * Sends an HTTP GET request to the specified URL and returns the response data as a Promise.
+ */
 function httpGet(url: string): Promise<string> {
   return new Promise((resolve, reject) => {
     https
@@ -26,6 +32,16 @@ function httpGet(url: string): Promise<string> {
   });
 }
 
+/**
+ * Main function to fetch and display place information based on a query.
+ *
+ * It constructs a URL for the Google Places API using the provided query or defaults to "Mumbai".
+ * The function then makes an HTTP GET request to the API, checks the response status, and logs the
+ * name, formatted address, and location of the first result if the request is successful.
+ *
+ * @returns {Promise<void>} A promise that resolves when the operation is complete.
+ * @throws Error If the Places API returns an error status.
+ */
 async function main() {
   const query = process.argv.slice(2).join(" ") || "Mumbai";
   const apiKey = getEnv("NEXT_PUBLIC_GOOGLE_MAPS_API_KEY");
