@@ -19,6 +19,15 @@ interface EnhancedPayload {
   activity?: string;
 }
 
+/**
+ * Handles the POST request for enhanced astrology calculations.
+ *
+ * This function processes the incoming request, validates the required fields, loads the Swiss Ephemeris, and performs various calculations including scoring and determining sunrise/sunset times. It constructs a detailed response containing the results of the calculations, including activity scores and time windows, while handling potential errors throughout the process.
+ *
+ * @param req - The incoming request object containing the payload for processing.
+ * @returns A JSON response with the results of the astrology calculations or error details.
+ * @throws Error If there are issues with loading the Swiss Ephemeris, validation failures, or internal processing errors.
+ */
 export async function POST(req: Request) {
   try {
     const body = (await req.json()) as EnhancedPayload;
